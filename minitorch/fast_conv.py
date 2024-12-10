@@ -359,7 +359,7 @@ class Conv2dFun(Function):
         batch, in_channels, h, w = input.shape
         out_channels, in_channels, kh, kw = weight.shape
 
-        grad_weight = grad_output.zeros((out_channels, in_channels, kh, kw))
+        grad_weight = grad_output.zeros((in_channels, out_channels, kh, kw))
         new_input = input.permute(1, 0, 2, 3)
         new_grad_output = grad_output.permute(1, 0, 2, 3)
         tensor_conv2d(  # type: ignore
